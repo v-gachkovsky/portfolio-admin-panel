@@ -61,7 +61,8 @@ export const DrawerCollapsePanel = styled.div`
 
 export const Content = styled.div`
   flex-grow: 1;
-  padding-top: 68px;
+  // padding-top: 68 (header's height) + padding on the page
+  padding: 88px 30px 20px;
 `;
 
 export const Link = styled(BaseLink)`
