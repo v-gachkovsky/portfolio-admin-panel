@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  Toolbar,
   Typography,
   IconButton,
   Divider,
@@ -12,16 +11,18 @@ import {
   ListItemText,
 } from '@material-ui/core';
 
+
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,
   MoveToInbox as InboxIcon,
   Mail as MailIcon,
+  AccountCircle as AccountCircleIcon,
 } from '@material-ui/icons';
 
 import routes from 'constants/routes';
 
-import { Wrapper, AppBar, Drawer, DrawerCollapsePanel, Content, Link } from './styled';
+import { Wrapper, AppBar, Toolbar, ToolbarTitle, Drawer, DrawerCollapsePanel, Content, Link } from './styled';
 
 function AdminLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,19 +42,27 @@ function AdminLayout({ children }) {
         shift={isOpen}
       >
         <Toolbar>
-          {!isOpen && (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-          <Typography variant="h6" noWrap>
-            Portfolio Admin Panel
-          </Typography>
+          <ToolbarTitle>
+            {!isOpen && (
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
+            <Typography variant="h6" noWrap>
+              Portfolio: Admin Panel
+            </Typography>
+          </ToolbarTitle>
+          <IconButton
+            edge="end"
+            color="inherit"
+          >
+            <AccountCircleIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer

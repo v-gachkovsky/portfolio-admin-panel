@@ -4,6 +4,7 @@ import { Link as BaseLink } from 'react-router-dom';
 import {
   AppBar as BaseAppBar,
   Drawer as BaseDrawer,
+  Toolbar as BaseToolbar,
 } from '@material-ui/core';
 
 import { styledIf, colors } from 'styles';
@@ -33,6 +34,16 @@ export const AppBar = styled(BaseAppBar)`
       width: calc(100vw - ${drawerWidth}px) !important;
       transition: all 125ms ease-in-out;
     }
+`;
+
+export const Toolbar = styled(BaseToolbar)`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ToolbarTitle = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const Drawer = styled(BaseDrawer)`
