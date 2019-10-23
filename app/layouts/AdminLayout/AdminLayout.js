@@ -11,16 +11,14 @@ import {
   ListItemText,
 } from '@material-ui/core';
 
-
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,
-  MoveToInbox as InboxIcon,
-  Mail as MailIcon,
   AccountCircle as AccountCircleIcon,
 } from '@material-ui/icons';
 
 import routes from 'constants/routes';
+import { tabs } from 'constants/tabs';
 
 import { Wrapper, AppBar, Toolbar, ToolbarTitle, Drawer, DrawerCollapsePanel, Content, Link } from './styled';
 
@@ -76,12 +74,18 @@ function AdminLayout({ children }) {
         </DrawerCollapsePanel>
         <Divider />
         <List>
-          {['Inbox', 'Starred'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {Object.keys(tabs).map((key) => {
+            const Icon = tabs[key].icon;
+
+            return (
+              <ListItem button key={key}>
+                <ListItemIcon>
+                  <Icon />
+                </ListItemIcon>
+                <ListItemText primary={tabs[key].title} />
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
       <Content>
