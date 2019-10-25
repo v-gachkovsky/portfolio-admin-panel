@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -6,7 +6,6 @@ import {
   IconButton,
   Divider,
   List,
-  ListItem,
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
@@ -17,13 +16,55 @@ import {
   AccountCircle as AccountCircleIcon,
 } from '@material-ui/icons';
 
-import routes from 'constants/routes';
-import { tabs } from 'constants/tabs';
+import constants, { tabs } from 'appConstants';
 
-import { Wrapper, AppBar, Toolbar, ToolbarTitle, Drawer, DrawerCollapsePanel, Content, Link } from './styled';
+import {
+  Wrapper,
+  AppBar,
+  Toolbar,
+  ToolbarTitle,
+  Drawer,
+  DrawerCollapsePanel,
+  Content,
+  SideBarLink,
+  ListItem,
+} from './styled';
 
-function AdminLayout({ children }) {
+function AdminLayout({ location: { pathname }, children }) {
   const [isOpen, setIsOpen] = useState(false);
+  const sideBarMenu = useMemo(
+    () => {
+      return (
+        <List>
+          {Object.keys(tabs).map((key) => {
+            const {
+              title,
+              route,
+              icon: Icon,
+            } = tabs[key];
+
+            return (
+              <SideBarLink
+                key={key}
+                to={route}
+              >
+                <ListItem
+                  button
+                  active={pathname === route}
+                >
+                  <ListItemIcon>
+                    <Icon />
+                  </ListItemIcon>
+                  <ListItemText primary={title} />
+                </ListItem>
+              </SideBarLink>
+            );
+          })}
+        </List>
+      );
+    },
+    [pathname]
+  );
 
   const handleDrawerOpen = () => {
     setIsOpen(true);
@@ -52,7 +93,7 @@ function AdminLayout({ children }) {
               </IconButton>
             )}
             <Typography variant="h6" noWrap>
-              Portfolio: Admin Panel
+              {constants.appTitle}
             </Typography>
           </ToolbarTitle>
           <IconButton
@@ -73,28 +114,9 @@ function AdminLayout({ children }) {
           </IconButton>
         </DrawerCollapsePanel>
         <Divider />
-        <List>
-          {Object.keys(tabs).map((key) => {
-            const Icon = tabs[key].icon;
-
-            return (
-              <ListItem button key={key}>
-                <ListItemIcon>
-                  <Icon />
-                </ListItemIcon>
-                <ListItemText primary={tabs[key].title} />
-              </ListItem>
-            );
-          })}
-        </List>
+        {sideBarMenu}
       </Drawer>
       <Content>
-        <Link to={routes.login}>
-          Login
-        </Link>
-        <Link to={routes.dashboard}>
-          Dashboard
-        </Link>
         {children}
       </Content>
     </Wrapper>
@@ -102,6 +124,9 @@ function AdminLayout({ children }) {
 }
 
 AdminLayout.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }),
   children: PropTypes.node.isRequired,
 };
 

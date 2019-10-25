@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import routes from 'constants/routes';
+import routes from 'app/appConstants/routes';
 
 import { Link } from './styled';
 

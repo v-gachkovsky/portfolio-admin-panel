@@ -6,8 +6,8 @@ import createSagaMiddleware from 'redux-saga';
 function configureStore({
   history,
   reducerFactory,
-  sagaOptions = {},
-  initialState = {},
+  sagaOptions,
+  initialState,
 }) {
   const sagaMiddleware = createSagaMiddleware(sagaOptions);
 
@@ -39,4 +39,9 @@ function configureStore({
   return store;
 }
 
-export default configureStore;
+export default (history, reducerFactory, sagaOptions = {}, initialState = {}) => configureStore({
+  history,
+  reducerFactory,
+  sagaOptions,
+  initialState,
+});

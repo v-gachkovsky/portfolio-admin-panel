@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import routes from 'constants/routes';
+import { routes } from 'appConstants';
 
 function Router({ routeConfig }) {
   const { anonymous, authorized } = routeConfig;

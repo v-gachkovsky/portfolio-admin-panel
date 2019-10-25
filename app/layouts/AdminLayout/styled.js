@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { Link as BaseLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {
   AppBar as BaseAppBar,
   Drawer as BaseDrawer,
   Toolbar as BaseToolbar,
+  ListItem as BaseListItem,
 } from '@material-ui/core';
 
 import { styledIf, colors } from 'styles';
@@ -76,6 +77,13 @@ export const Content = styled.div`
   padding: 88px 30px 20px;
 `;
 
-export const Link = styled(BaseLink)`
-  margin-right: 10px;
+export const SideBarLink = styled(Link)`
+  color: ${colors.white};
+  text-decoration: none;
+`;
+
+export const ListItem = styled(BaseListItem)`
+  ${styledIf('active')`
+    background-color: ${colors.lightGrey} !important;
+  `};
 `;
