@@ -1,12 +1,13 @@
-import { delay, call } from 'redux-saga/effects';
+import { takeLatest, call, put } from 'redux-saga/effects';
+import * as productsApi from 'api/products';
+import { getProducts } from './routines';
 
-function* dynamicSaga() {
-  console.log('hello, world');
+function* getProductsSaga() {
+  const response = yield call(productsApi.getProducts);
+  console.log('response', response);
+  yield put(getProducts.success(response.products));
 }
 
 export default function* () {
-  while (true) {
-    yield call(dynamicSaga);
-    yield delay(500);
-  }
+  yield takeLatest(getProducts.TRIGGER, getProductsSaga);
 }

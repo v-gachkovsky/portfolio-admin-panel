@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import routes from 'app/appConstants/routes';
+import { routes } from 'appConstants';
 
 import { Link } from './styled';
 
@@ -12,8 +12,8 @@ function AnonymousLayout({ children }) {
         <Link to={routes.login}>
           Login
         </Link>
-        <Link to={routes.dashboard}>
-          Dashboard
+        <Link to={routes.productDesign}>
+          Product Design
         </Link>
       </div>
       {children}

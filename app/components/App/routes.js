@@ -1,12 +1,12 @@
 import { lazy } from 'react';
 import { routes } from 'appConstants';
 
-const LoginPage = lazy(() => import('../../pages/LoginPage'));
-const LogoutPage = lazy(() => import('../../pages/LogoutPage'));
-const ProductDesignPage = lazy(() => import('../../pages/ProductDesignPage'));
-const PublicationsPage = lazy(() => import('../../pages/PublicationsPage'));
-const ContactMePage = lazy(() => import('../../pages/ContactMePage'));
-const NewsPage = lazy(() => import('../../pages/NewsPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const LogoutPage = lazy(() => import('pages/LogoutPage'));
+const ProductDesignPage = lazy(() => import('pages/ProductDesignPage'));
+const PublicationsPage = lazy(() => import('pages/PublicationsPage'));
+const ContactMePage = lazy(() => import('pages/ContactMePage'));
+const NewsPage = lazy(() => import('pages/NewsPage'));
 
 export const routerConfig = {
   anonymous: [
