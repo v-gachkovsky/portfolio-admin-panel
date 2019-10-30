@@ -1,4 +1,4 @@
-function PtmError(errorCode, details, ...args) {
+function RequestError(errorCode, details, ...args) {
   const instance = Reflect.construct(Error, args);
   Reflect.setPrototypeOf(instance, Reflect.getPrototypeOf(this));
 
@@ -9,7 +9,7 @@ function PtmError(errorCode, details, ...args) {
   return instance;
 }
 
-PtmError.prototype = Object.create(Error.prototype, {
+RequestError.prototype = Object.create(Error.prototype, {
   constructor: {
     value: Error,
     enumerable: false,
@@ -18,6 +18,6 @@ PtmError.prototype = Object.create(Error.prototype, {
   },
 });
 
-Reflect.setPrototypeOf(PtmError, Error);
+Reflect.setPrototypeOf(RequestError, Error);
 
-export default PtmError;
+export default RequestError;
