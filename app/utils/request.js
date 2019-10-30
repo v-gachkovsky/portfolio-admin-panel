@@ -85,7 +85,7 @@ export default function createRequest(apiBase) {
       });
   }
 
-  const ptmRequest = httpMethod => (endpoint, data) => {
+  const makeRequest = httpMethod => (endpoint, data) => {
     const url = `${apiBase}${endpoint}`;
 
     const options = {
@@ -122,14 +122,14 @@ export default function createRequest(apiBase) {
       ? `${endpoint}?${queryParams}`
       : endpoint;
 
-    return ptmRequest(isHead ? 'HEAD' : 'GET')(url, null);
+    return makeRequest(isHead ? 'HEAD' : 'GET')(url, null);
   };
 
   return {
     get: makeGetRequest(),
     head: makeGetRequest(true),
-    post: ptmRequest('POST'),
-    put: ptmRequest('PUT'),
-    delete: ptmRequest('DELETE'),
+    post: makeRequest('POST'),
+    put: makeRequest('PUT'),
+    delete: makeRequest('DELETE'),
   };
 }
