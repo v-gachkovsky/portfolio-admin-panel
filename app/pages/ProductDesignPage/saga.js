@@ -3,9 +3,8 @@ import * as productsApi from 'api/products';
 import { getProducts } from './routines';
 
 function* getProductsSaga() {
-  const response = yield call(productsApi.getProducts);
-  console.log('response', response);
-  yield put(getProducts.success(response.products));
+  const products = yield call(productsApi.getProducts);
+  yield put(getProducts.success(products));
 }
 
 export default function* () {

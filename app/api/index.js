@@ -1,3 +1,3 @@
-import { createAPIRequests } from './utils';
+import createRequest from 'utils/request';
 
-export default createAPIRequests('http://localhost:9000/api/v1');
+export default createRequest('http://localhost:9000/api/v1');
